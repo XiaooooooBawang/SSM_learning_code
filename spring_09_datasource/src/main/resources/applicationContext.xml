@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        "><!--        开context命名空间-->
+
+    <!--加载properties文件-->
+    <!--<context:property-placeholder location="jdbc.properties" system-properties-mode="NEVER"/>-->
+
+    <!--加载多个属性文件，规范写法是方法三和四-->
+    <!--方法一-->
+    <!--<context:property-placeholder location="jdbc.properties,jdbc2.properties" system-properties-mode="NEVER"/>-->
+    <!--方法二-->
+    <!--<context:property-placeholder location="*.properties" system-properties-mode="NEVER"/>-->
+    <!--方法三,从当前项目文件中的properties文件中加载-->
+    <!--<context:property-placeholder location="classpath:*.properties" system-properties-mode="NEVER"/>-->
+    <!--方法四,从当前项目文件和依赖的jar包中的properties文件中加载，最标准是这个方法-->
+    <context:property-placeholder location="classpath*:*.properties" system-properties-mode="NEVER"/>
+
+    <!--管理DruidDataSource对象-->
+    <!--用属性占位符读取属性-->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/><!--数据库驱动-->
+        <property name="url" value="${jdbc.url}"/><!--数据库连接地址-->
+        <property name="username" value="${jdbc.username}"/><!--数据库账户-->
+        <property name="password" value="${jdbc.password}"/><!--数据库密码-->
+    </bean>
+
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl">
+        <property name="name" value="${username}"/>
+    </bean>
+</beans>

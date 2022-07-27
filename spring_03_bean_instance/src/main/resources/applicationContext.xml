@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl"/>
+
+<!--    spring管理静态工厂实例化-->
+<!--    class:工厂类的类全名-->
+<!--    factory-mehod:具体工厂类中创建对象的方法名-->
+    <bean id="orderDao" class="com.XiaooooooBawang.factory.OrderDaoFactory" factory-method="getOrderDao"/>
+
+<!--    spring管理实例工厂实例化-->
+    <!--<bean id="userFactory" class="com.XiaooooooBawang.factory.UserDaoFactory"/>相当于创建实例化工厂对象-->
+    <!--<bean id="userDao" factory-bean="userFactory" factory-method="getUserDao"/>调用对象中的方法创建bean-->
+
+<!--    factorybean实例化-->
+    <bean id="userDao" class="com.XiaooooooBawang.factory.UserDaoFactoryBean"/>
+</beans>

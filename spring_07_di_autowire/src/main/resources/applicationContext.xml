@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl"/>
+   <!-- autowire属性：开启自动装配，通常使用按类型装配,因为没事不会对一个接口写多个实现类
+    按类型的话，就算把bean-bookDao的id名删了也能注入-->
+    <bean id="bookService" class="com.XiaooooooBawang.service.impl.BookServiceImpl" autowire="byType"/>
+    <!--按类型自动装配，如果有两个同类型的bean，则会报错,需要按名称装配,得保证有一个bean的id名与对应属性名相同。不推荐使用按名称，耦合度就高了-->
+<!--    <bean id="bookService" class="com.XiaooooooBawang.service.impl.BookServiceImpl" autowire="byName"/>-->
+
+</beans>

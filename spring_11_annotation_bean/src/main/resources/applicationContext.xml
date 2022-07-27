@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl"/>-->
+    <context:component-scan base-package="com.XiaooooooBawang"/><!--配置Spring的注解包扫描-->
+    <!--component:组件,Spring将管理的bean视作自己的一个组件
+        scan:扫描
+        base-package指定Spring框架扫描的包路径，它会扫描指定包及其子包中的所有类上的注解。
+        包路径越多[如:com.XiaooooooBawang.dao.impl]，扫描的范围越小速度越快
+        一般扫描到项目的组织名称即Maven的groupId下[如:com.XiaooooooBawang]即可-->
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--bean标签标示配置bean
+    	id属性标示给bean起名字,也就是对象名
+    	class属性表示给bean定义类型,用这个类来造对象，所以不能写如BookDao的接口，得写其接口实现类
+    	注意事项：bean定义时id属性在同一个上下文中(配置文件)不能重复
+	-->
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl"/>
+
+    <bean id="bookService" class="com.XiaooooooBawang.service.impl.BookServiceImpl">
+        <!--配置server与dao的关系-->
+        <!--property标签表示配置当前bean的属性
+        		name属性表示配置哪一个具体的属性  也就是BookServiceImpl中的bookDao属性
+        		ref属性表示参照哪一个bean  也就是这个配置文件中id为bookDao的bean
+        		注意:这里配置中的两个bookDao的含义是不一样的
+        		name="bookDao"中`bookDao`的作用是让Spring的IOC容器在获取到名称后，将首字母大写，
+        		前面加set找对应的`setBookDao()`方法进行对象注入。
+        		ref="bookDao"中`bookDao`的作用是让Spring能在IOC容器中找到id为`bookDao`的Bean对象给`bookService`进行注入
+		-->
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+
+</beans>

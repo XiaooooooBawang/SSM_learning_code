@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl">
+        <property name="map">
+            <map>
+                <entry key="ksdjfh" value="askdj"/>
+                <entry key="ldflvd" value="tghlfgjl"/>
+            </map>
+        </property>
+        <property name="array">
+            <array>
+                <value>2312</value><!--string类型的话value是不需要加双引号的-->
+                <value>2672</value>
+                <value>27872</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>987</value>
+                <value>9767</value>
+                <value>967</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>ksdhfj</value>
+                <value>sdfgsfds</value>
+            </set>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="dklfjd">dfg</prop>
+                <prop key="lkjxcv">jlxkcfhdlsf</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

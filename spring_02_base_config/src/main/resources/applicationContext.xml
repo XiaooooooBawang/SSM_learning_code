@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--name:为bean指定别名，别名可以有多个，使用逗号，分号，空格进行分隔-->
+    <bean id="bookDao" name="bookDaoEbi dao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl"/>
+    <!--获取bean无论是通过id还是name获取，如果无法获取到，将抛出异常==NoSuchBeanDefinitionException-->
+    <!--scope：为bean设置作用范围，可选值为单例singloton，非单例prototype,默认单例-->
+    <bean id="bookService" name="service" class="com.XiaooooooBawang.service.impl.BookServiceImpl" scope="prototype">
+        <property name="bookDao" ref="bookDao"/>
+        <!--ref也是可以用bookDao的别名的，不够这里建议还是用回id-->
+    </bean>
+</beans>

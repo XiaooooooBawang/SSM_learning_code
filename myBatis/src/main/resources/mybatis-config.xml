@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--读取外部properties配置文件-->
+    <properties resource="jdbc.properties"/>
+
+    <!--别名-->
+    <typeAliases>
+        <package name="com.XiaooooooBawang.pojo"/>
+        <!--包扫描，MyBatis 会在包名下面搜索需要的 Java Bean-->
+        <!--意味着给pojo包下所有的类起了别名（别名就是类名），不区分大小写-->
+    </typeAliases>
+
+    <!--
+    environments：配置数据库连接环境信息。可以配置多个environment，通过default属性切换不同的environment
+    -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--数据库连接信息-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--数据库连接信息-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--加载sql映射文件-->
+        <!--如果是这样直接加载的话，可不需要让UserMapper的xml文件和接口在同一目录下-->
+        <!--<mapper resource="com/XiaooooooBawang/mapper/UserMapper.xml"/>-->
+
+        <!--Mapper自动代理方式-->
+        <!--如果Mapper接口名称和SQL映射文件名称相同，并在同一目录下，则可以使用包扫描的方式简化SQL映射文件的加载-->
+        <!-- 将包内的映射器接口实现全部注册为映射器 -->
+        <package name="com.XiaooooooBawang.mapper"/>
+
+    </mappers>
+</configuration>

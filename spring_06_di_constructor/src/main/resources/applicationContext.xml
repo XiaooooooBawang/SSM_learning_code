@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bookDao" class="com.XiaooooooBawang.dao.impl.BookDaoImpl">
+        <constructor-arg name="connectionNum" value="10"/>
+        <constructor-arg name="databaseName" value="mysql"/>
+    </bean>
+    <bean id="userDao" class="com.XiaooooooBawang.dao.impl.UserDaoImpl"/>
+    <bean id="bookService" class="com.XiaooooooBawang.service.impl.BookServiceImpl">
+<!--        构造器注入-->
+        <constructor-arg name="bookDao" ref="bookDao"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+<!--        name属性对应的值为构造函数中方法"形参"的参数名，不是属性名-->
+<!--        ref属性指向的是spring的IOC容器中其他bean对象。-->
+    </bean>
+
+</beans>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.XiaooooooBawang.mapper.BrandMapper">
+
+    <!--esultMap定义 字段 和 属性 的映射关系-->
+    <resultMap id="brandResultMap" type="brand">
+        <!--
+            id：完成主键字段的映射
+                column：表的列名
+                property：实体类的属性名
+            result：完成一般字段的映射
+                column：表的列名
+                property：实体类的属性名
+        -->
+        <!--
+            只需要定义 字段名 和 属性名 不一样的映射，而一样的则不需要专门定义出来
+        -->
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+
+    <!--使用resultMap替换resultType属性-->
+    <select id="selectAll" resultMap="brandResultMap">
+        select *
+        from tb_brand;
+    </select>
+
+    <!--<select id="selectById" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where id = #{id};
+    </select>-->
+
+    <!--条件查询-->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where status = #{status}
+          and company_name like #{companyName}
+          and brand_name like #{brandName};
+    </select>
+
+    <!--动态条件查询-->
+    <select id="selectByDynamicCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            <if test="companyName != null and companyName != '' ">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != '' ">
+                and brand_name like #{brandName}
+            </if>
+        </where>
+    </select>
+
+
+    <!--主键返回
+    * useGeneratedKeys：是够获取自动增长的主键值。true表示获取
+    * keyProperty  ：指定将获取到的主键值封装到哪儿个属性里-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_brand (brand_name, company_name, ordered, description, status)
+        values (#{brandName}, #{companyName}, #{ordered}, #{description}, #{status});
+    </insert>
+
+    <update id="update">
+        update tb_brand
+        <set>
+            <if test="brandName != null and brandName != ''">
+                brand_name = #{brandName},
+            </if>
+            <if test="companyName != null and companyName != ''">
+                company_name = #{companyName},
+            </if>
+            <if test="ordered != null">
+                ordered = #{ordered},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+    <delete id="deleteById">
+        delete from tb_brand where id = #{id};
+    </delete>
+    <delete id="deleteByIds">
+        delete from tb_brand where id
+        in
+        <foreach collection="array" item="id" separator="," open="(" close=")">
+           /*
+            * collection 属性：
+                * mybatis会将数组参数，封装为一个Map集合。
+                * 默认：array = 数组
+                * 使用@Param注解改变map集合的默认key的名称
+            * item 属性：本次迭代获取到的元素。
+            * separator 属性：集合项迭代之间的分隔符。`foreach` 标签不会错误地添加多余的分隔符。也就是最后一次迭代不会加分隔符。
+            * open 属性：该属性值是在拼接SQL语句之前拼接的语句，只会拼接一次
+            * close 属性：该属性值是在拼接SQL语句拼接后拼接的语句，只会拼接一次*/
+            #{id}
+        </foreach>
+        ;
+    </delete>
+</mapper>
