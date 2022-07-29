@@ -67,6 +67,8 @@ public class UserController {
         return "{'module':'list param'}";
     }
 
+    /*@RequestBody是用于接收json数据的！！！*/
+
     //集合参数：json格式
     //1.开启json数据格式的自动转换，在SpringMvc配置类中开启@EnableWebMvc
     //2.使用@RequestBody注解将外部传递的json数组数据映射到形参的集合对象中作为数据

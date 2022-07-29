@@ -1,16 +1,11 @@
 package com.XiaooooooBawang.controller;
 
 import com.XiaooooooBawang.model.User;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -18,8 +13,8 @@ public class UserController {
 
     /*@ResponseBody：设置当前控制器返回值作为响应体，该注解可以写在类上或者方法上，写在类上就是该类下的所有方法都有@ReponseBody功能*/
     /*当方法上有@ReponseBody注解后
-        * 方法的返回值为字符串，会将其作为文本内容直接响应给前端
-        * 方法的返回值为对象，会将对象转换成JSON响应给前端*/
+     * 方法的返回值为字符串，会将其作为文本内容直接响应给前端
+     * 方法的返回值为对象，会将对象转换成JSON响应给前端*/
 
     //响应页面/跳转页面
     //返回值为String类型，设置返回值为页面名称，即可实现页面跳转
